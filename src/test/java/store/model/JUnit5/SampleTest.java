@@ -1,14 +1,15 @@
-package store.model;
+package store.model.JUnit5;
 
 import org.junit.Test;
 import store.dataset.OnlineStore;
+import store.model.Customer;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 
 public class SampleTest extends OnlineStore {
 
