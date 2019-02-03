@@ -1,4 +1,4 @@
-package store.model.JUnit5;
+package store.model;
 
 import org.junit.Test;
 import store.dataset.OnlineStore;
