@@ -8,6 +8,8 @@ At the end of this section , we can:
    
 ## Getting required dependencies
 
+   * In order to use JUnit 5, we need to use Java jdk version 8.
+
    * Declare ```junit-jupiter-api``` dependency in ```pom.xml``` .
  This dependency provides the public API for writing tests and extensions. 
 ``` 
@@ -60,5 +62,5 @@ At the end of this section , we can:
    
    ```
    
-   
-
+   Check [pom.xml](../pom.xml) for list of dependencies. To check the basic setup run 
+   [JUnit5](../src/test/java/learning/JUnit5/LifecycleTest.java). 
