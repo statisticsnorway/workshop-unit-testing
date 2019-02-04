@@ -27,7 +27,7 @@ At the end of this section , we can:
  </dependency>
  
 ```
-   * ####Add support for JUnit 4 tests cases.
+   * ###Add support for JUnit 4 tests cases.
     
    If we need to migrate from JUnit 4 to J Unit 5 and keep tests written in JUnit 4,
    add dependency for that:
@@ -41,11 +41,11 @@ At the end of this section , we can:
    
    ```
    
-   * ####Maven
+   * ###Maven
    Starting with version 2.22.0, Maven Surefire provides native support for executing tests on the JUnit Platform.
    
    
-   #####Configure test  Engines
+   ####Configure test  Engines
    
    To configure support for JUnit Jupiter based tests, configure test scoped dependencies on the JUnit Jupiter API and 
    the JUnit Jupiter TestEngine implementation similar to the following.
