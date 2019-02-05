@@ -19,8 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class ParametrizedAnnotationTest extends OnlineStore {
 
     @DisplayName("Test to verify the generated customer list")
-    @ParameterizedTest
-    void shouldGetCustomerList(List<Customer> customerList){
+    void shouldGetCustomerList(){
        //TODO: Verify that list of customers generated through sample model contains all the 10 customers
     }
 
