@@ -46,7 +46,6 @@ After we have added a new parameterized test to our test class, its source code 
     @DisplayName("Should pass a non-null message to our test method")
     @ParameterizedTest
     @ValueSource(strings = {"Hello", "World", "example"})
-    
     void shouldVerifyStringOfSizeAsMethodParameter(String param) {
         assertTrue(param.length() <= 5, "Parameter should be of length smaller or equal to 5");
     }
@@ -73,7 +72,6 @@ After we have configured the custom display name of each method invocation, the 
     @DisplayName("Should pass a string of size equal to 5 to our test method with each invocation name")
     @ParameterizedTest(name = "{index} => message=''{0}''")
     @ValueSource(strings = {"Hello", "World", "example"})
-    
     void shouldVerifyStringOfSizeAsMethodParameterWIthInvocationName(String param) {
         assertTrue(param.length() <= 5, "Parameter should be of length smaller or equal to 5");
     }
@@ -109,7 +107,6 @@ If our parameterized test takes one enum value as a method parameter, we have to
     @DisplayName("Pass enum values to our test method")
     @ParameterizedTest(name = "{index} => status=''{0}''")
     @EnumSource(Status.class)
-    
     void shouldPassEnumValuesAsMethodParameter(Status status) {
         assertFalse(status.toString().equalsIgnoreCase("PENDING"));
     }
@@ -126,7 +123,6 @@ If our parameterized test takes one enum value as a method parameter, we have to
         @DisplayName("Should pass only the specified enum value as a method parameter")
         @ParameterizedTest(name = "{index} => status=''{0}''")
         @EnumSource(value = Status.class, names = {"APPROVED"})
-        
         void shouldPassEnumValueAsMethodParameter(Status status) {
             Status expStatus = Status.APPROVED;
             assertEquals(expStatus,status);
@@ -153,7 +149,6 @@ To pass multiple method parameters to our parameterized test and the provided te
     @DisplayName("Pass params using CsvSource")
     @ParameterizedTest(name = "{index} => input={0}, expected={1}")
     @CsvSource(value = {"test:test", "tEst:test", "Java:java"}, delimiter = ':')
-    
     void toLowerCase_ShouldGenerateTheExpectedLowercaseValue(String input, String expected) {
         String actualValue = input.toLowerCase();
         assertEquals(expected, actualValue);
@@ -181,7 +176,6 @@ For example, we could use a CSV file like:
      @DisplayName("Should pass the method parameters provided by the test-data.csv file")
      @ParameterizedTest(name = "{index} => input={0}, expected={1}")
      @CsvFileSource(resources = "/TestData.csv", numLinesToSkip = 1)
-     
      void toUpperCase_ShouldGenerateTheExpectedUppercaseValueCSVFile(String input, String expected) {
          String actualValue = input.toUpperCase();
          assertEquals(expected, actualValue);
@@ -210,7 +204,6 @@ When we do this, we must remember to configure the name of the factory method.
     @DisplayName("Should pass the method parameters provided by factory method")
     @ParameterizedTest
     @MethodSource("provideStringsForIsBlank")
-    
     void isBlankShouldReturnTrueBlankStrings(String input, boolean expected) {
         assertEquals(expected, input.isEmpty());
     }
@@ -263,7 +256,6 @@ That’s why the provided method parameters must use the same order as the metho
      @DisplayName("Should pass the method parameters provided by Argument Provider")
      @ParameterizedTest
      @ArgumentsSource(CustomArgumentProvider.class)
-     
      void shouldReturnTrueForBlankStringsWithCustomProvider(String input, boolean expected) {
          assertEquals(expected, input.isEmpty());
      }
