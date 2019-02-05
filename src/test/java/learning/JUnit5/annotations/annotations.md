@@ -90,7 +90,7 @@ using annotations found from [prg.junit.jupiter.params.provider](https://junit.o
 
 ### Let´s see how we can use more complex argument sources provided by JUnit 5
 
-* **Passing Enum values to our parametrized test** 
+ **Passing Enum values to our parametrized test** 
 
 If our parameterized test takes one enum value as a method parameter, we have to annotate our test method with the 
 ```@EnumSource`` annotation and specify the enum values which are passed to our test method.`
@@ -120,7 +120,7 @@ If our parameterized test takes one enum value as a method parameter, we have to
 **``` @EnumSource ```** annotation´s names attribute.
 
 ```
-    @DisplayName("Should pass only the specified enum value as a method parameter")
+        @DisplayName("Should pass only the specified enum value as a method parameter")
         @ParameterizedTest(name = "{index} => status=''{0}''")
         @EnumSource(value = Status.class, names = {"APPROVED"})
         void shouldPassEnumValueAsMethodParameter(Status status) {
@@ -131,4 +131,134 @@ If our parameterized test takes one enum value as a method parameter, we have to
 ```
 ![](../../../../../../media/EnumValuParamTest.png)
 
-Check [@ParameterizedTest example](examples/ParametrizedAnnotationTest.java)
+
+* **Passing Method Parameters by Using the CSV Format**:
+To pass multiple method parameters to our parameterized test and the provided test data is used by only one test method
+ (or a few test methods), we can configure our test data by using the **```@CsvSource```** annotation.
+ 
+  Configure the test data by using an array of String objects.
+  
+   * One String object must contain all method parameters of one method invocation.
+    
+   * The different method parameters must be separated with a comma.
+     
+   * The values found from each line must use the same order as the method parameters of our test method.
+
+
+```
+    @DisplayName("Pass params using CsvSource")
+    @ParameterizedTest(name = "{index} => input={0}, expected={1}")
+    @CsvSource(value = {"test:test", "tEst:test", "Java:java"}, delimiter = ':')
+    void toLowerCase_ShouldGenerateTheExpectedLowercaseValue(String input, String expected) {
+        String actualValue = input.toLowerCase();
+        assertEquals(expected, actualValue);
+    }
+```
+
+![](../../../../../../media/ParamTestCsvSOurce.png)
+
+
+* **Loading test data from CSV file**
+
+Instead of passing the CSV values inside the code, we can refer to an actual CSV file.
+
+For example, we could use a CSV file like:
+     
+    input,expected
+    test,TEST
+    tEst,TEST
+    Java,JAVA
+    
+  
+ We can load the CSV file and ignore the header column with **```@CsvFileSource```**: 
+ 
+ ```
+     @DisplayName("Should pass the method parameters provided by the test-data.csv file")
+     @ParameterizedTest(name = "{index} => input={0}, expected={1}")
+     @CsvFileSource(resources = "/TestData.csv", numLinesToSkip = 1)
+     void toUpperCase_ShouldGenerateTheExpectedUppercaseValueCSVFile(String input, String expected) {
+         String actualValue = input.toUpperCase();
+         assertEquals(expected, actualValue);
+     }
+ ```
+ 
+ ![](../../../../../../media/ParamTestCsvFile.png)
+ 
+* **Using Factory method**: 
+If all the parameterized tests which needs parameters are from same test class and 
+logic to create method parameters is not too complex, you can create these method parameters by using a factory method.
+
+Rules to create static factory method:
+
+1. Method must not take any method parameters.
+2. Factory method must return a ```Stream, Iterable, Iterator, or an array of Arguments objects```.
+3. An Argument object must contain all method parameters of a single test method invocation.
+4. Create new Arguments object by invoking static ``` of() ``` method of the Argument interface. Method parameters provided to this are passed to test method 
+   * Factory method must be static only if we use the default lifecycle configuration.
+   * Factory method can also return a Stream that contain primitive types.
+  
+Must ensure that its return value is used when JUnit 5 determines the method parameters of our parameterized test. 
+We can do this by annotating our test method with the **```@MethodSource```** annotation. 
+When we do this, we must remember to configure the name of the factory method. 
+```
+    @DisplayName("Should pass the method parameters provided by factory method")
+    @ParameterizedTest
+    @MethodSource("provideStringsForIsBlank")
+    void isBlankShouldReturnTrueBlankStrings(String input, boolean expected) {
+        assertEquals(expected, input.isEmpty());
+    }
+
+    private static Stream<Arguments> provideStringsForIsBlank() {
+        return Stream.of(
+                Arguments.of("", true),
+                Arguments.of("not blank", false)
+        );
+    }
+
+```
+
+![](../../../../../../media/ParamTestusingFactoryMethod.png)
+
+
+* **Using Customer ArgumentsProvider**
+
+If the test methods that use our test data are found from different test classes or the logic which creates the required test data is so complex that we don’t want to add it to our test class,
+we have to create a custom ArgumentsProvider.
+
+We can do this by creating class that implements the ArgumentsProvider interface. After we have created this class, 
+we have to implement the provideArguments() method that returns a Stream of Arguments objects. 
+When we create the returned Stream, we must follow these rules:
+
+1. An Arguments object must contain all method parameters of a single test method invocation.
+2. We can create a new Arguments object by invoking the static of() method of the Arguments interface.
+The method parameters provided to the of() method are passed to our test method when it is invoked by JUnit 5.
+That’s why the provided method parameters must use the same order as the method parameters of our test method.
+
+
+**First**, create ArgumentsProvider class:
+
+```
+    public class CustomArgumentProvider implements ArgumentsProvider {
+    @Override
+    public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) throws Exception {
+        return Stream.of(
+                Arguments.of("", true),
+                Arguments.of("not blank", false)
+        );
+    }
+}
+
+```
+
+**Second**, configure created ArgumentsProvider by annotation test emthod with **``` @ArgumentsSource```** annotation.
+
+ ```
+     @DisplayName("Should pass the method parameters provided by Argument Provider")
+     @ParameterizedTest
+     @ArgumentsSource(CustomArgumentProvider.class)
+     void shouldReturnTrueForBlankStringsWithCustomProvider(String input, boolean expected) {
+         assertEquals(expected, input.isEmpty());
+     }
+ ```
+ 
+  Check [@ParameterizedTest example](examples/ParametrizedAnnotationTest.java)

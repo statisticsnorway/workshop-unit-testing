@@ -2,9 +2,10 @@ package learning.JUnit5.annotations.examples;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.EnumSource;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.*;
 import store.dataset.OnlineStore;
+
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -32,7 +33,7 @@ public class ParametrizedAnnotationTest extends OnlineStore {
     @EnumSource(value = Status.class, names = {"APPROVED"})
     void shouldPassEnumValueAsMethodParameter(Status status) {
         Status expStatus = Status.APPROVED;
-        assertEquals(expStatus,status);
+        assertEquals(expStatus, status);
     }
 
     @DisplayName("Should pass a string of size equal to 5 to our test method")
@@ -49,19 +50,40 @@ public class ParametrizedAnnotationTest extends OnlineStore {
         assertTrue(param.length() <= 5, "Parameter should be of length smaller or equal to 5");
     }
 
-
-
-    /*@DisplayName("Should calculate the correct sum")
-    @ParameterizedTest(name = "{index} => a={0}, b={1}, sum={2}")
-    @MethodSource("sumProvider")
-    void sum(int a, int b, int sum) {
-        assertEquals(sum, a + b);
+    @DisplayName("Pass params using CsvSource")
+    @ParameterizedTest(name = "{index} => input={0}, expected={1}")
+    @CsvSource(value = {"test:test", "tEst:test", "Java:java"}, delimiter = ':')
+    void shouldGenerateTheExpectedLowercaseValue(String input, String expected) {
+        String actualValue = input.toLowerCase();
+        assertEquals(expected, actualValue);
     }
 
-    private static Stream<Arguments> sumProvider() {
+    @DisplayName("Should pass the method parameters provided by the test-data.csv file")
+    @ParameterizedTest(name = "{index} => input={0}, expected={1}")
+    @CsvFileSource(resources = "/TestData.csv", numLinesToSkip = 1)
+    void shouldGenerateTheExpectedUppercaseValueCSVFile(String input, String expected) {
+        String actualValue = input.toUpperCase();
+        assertEquals(expected, actualValue);
+    }
+
+    @DisplayName("Should pass the method parameters provided by factory method")
+    @ParameterizedTest
+    @MethodSource("provideStringsForIsBlank")
+    void shouldReturnTrueForBlankStrings(String input, boolean expected) {
+        assertEquals(expected, input.isEmpty());
+    }
+
+    private static Stream<Arguments> provideStringsForIsBlank() {
         return Stream.of(
-                Arguments.of(1, 1, 2),
-                Arguments.of(2, 3, 5)
+                Arguments.of("", true),
+                Arguments.of("not blank", false)
         );
-    }*/
+    }
+
+    @DisplayName("Should pass the method parameters provided by Argument Provider")
+    @ParameterizedTest
+    @ArgumentsSource(CustomArgumentProvider.class)
+    void shouldReturnTrueForBlankStringsWithCustomProvider(String input, boolean expected) {
+        assertEquals(expected, input.isEmpty());
+    }
 }
