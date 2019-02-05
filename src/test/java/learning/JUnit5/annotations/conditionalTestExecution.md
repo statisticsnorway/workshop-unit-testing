@@ -6,7 +6,7 @@ defines the extension API for programmatic, conditional test execution.
 An ```ExecutionCondition`` is evaluated for each container (e.g., a test class) to determine if all the tests it contains 
 should be executed based on the supplied ExtensionContext.`
  
-Similarly, an ```ExecutionCondition`` is evaluated for each test to determine if a given test method should be executed `
+Similarly, an ```ExecutionCondition``` is evaluated for each test to determine if a given test method should be executed 
 based on the supplied ExtensionContext.
 
 When multiple ExecutionCondition extensions are registered, a container or test is disabled as soon as one of the 
@@ -22,7 +22,7 @@ only the first such annotation discovered by JUnit will be used; any additional 
 ## Operating System Conditions
 
 A container or test may be enabled or disabled on a particular operating system via the 
-**```@EnabledOnOs```** and **```@DisabledOnOs```** annotations.`
+**```@EnabledOnOs```** and **```@DisabledOnOs```** annotations.
 
 
 ```
@@ -78,7 +78,7 @@ A container or test may be enabled or disabled on a particular version of the Ja
 ## System Property Conditions
 
 A container or test may be enabled or disabled based on the value of the named JVM system property via the 
-**```@EnabledIfSystemProperty```** and **``@DisabledIfSystemProperty```** annotations. 
+**```@EnabledIfSystemProperty```** and **```@DisabledIfSystemProperty```** annotations. 
 The value supplied via the matches attribute will be interpreted as a regular expression.`
 
 ```
@@ -149,3 +149,5 @@ or any other scripting language for which there is support for the Java Scriptin
     
 ```
 ![](../../../../../../media/ScriptBasedConditionDisabling.png)
+
+

@@ -36,4 +36,4 @@ Junit 4 had ```@Ignore``` annotation.
 Based on these basic annotations, lets see one running example: [LifecycleJUnit5Test.java](examples/LifecycleJUnit5Test.java)
 
 
-Lets move to [ParameterizedTest](parameterizedTest.md)
+Lets move next to [ParameterizedTest](parameterizedTest.md)

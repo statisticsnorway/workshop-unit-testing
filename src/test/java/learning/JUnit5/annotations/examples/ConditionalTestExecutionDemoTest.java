@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 @EnabledOnOs(OS.MAC)
 public class ConditionalTestExecutionDemoTest {
 
-    /*@DisplayName("Enable test on MAC")
+    @DisplayName("Enable test on MAC")
     @Test
     @EnabledOnOs(OS.MAC)
     void verifyTestEnabledOnlyOnMac() {
@@ -61,7 +61,7 @@ public class ConditionalTestExecutionDemoTest {
     void verifyTestDisabledOnCiServer() {
         assertEquals(6, (3 + 3), "Sum should be 6");
     }
-*/
+
     @Test
     @EnabledIf("2*3 == 6")
     void verifyTestExecutesOnlyIfConditionTrue() {
