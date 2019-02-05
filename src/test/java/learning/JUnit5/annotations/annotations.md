@@ -16,11 +16,11 @@ All the core annotations are located in ```org.junit.jupiter.api``` package in t
   | **@BeforeAll** | Denotes that the annotated method should be executed before all test methods in the current class. Exactly same as JUnit 4’s **@BeforeClass**. Such methods must be **static** (unless the “per-class” test instance lifecycle is used). |
   | **@AfterAll** | Denotes that the annotated method should be executed after all @Test, @RepeatedTest, @ParameterizedTest, and @TestFactory methods in the current class; analogous to JUnit 4’s **@AfterClass**. It must be static (unless the “per-class” test instance lifecycle is used).
   
-Based on these basic annotations, lets see one running example: [LifecycleJUnit5Test.java](LifecycleJUnit5Test.java)
+Based on these basic annotations, lets see one running example: [LifecycleJUnit5Test.java](examples/LifecycleJUnit5Test.java)
 
 JUnit Jupiter allows @Test, @RepeatedTest, @ParameterizedTest, @TestFactory, 
 @TestTemplate, @BeforeEach, and @AfterEach to be declared on interface default methods. 
-
+   
 **@ParameterizedTest**:
 Denotes that a method is a parameterized test. Parameterized tests make it possible to run a test multiple times with different arguments.
 They are declared just like regular @Test methods but use the @ParameterizedTest annotation instead.
@@ -46,6 +46,7 @@ After we have added a new parameterized test to our test class, its source code 
     @DisplayName("Should pass a non-null message to our test method")
     @ParameterizedTest
     @ValueSource(strings = {"Hello", "World", "example"})
+    
     void shouldVerifyStringOfSizeAsMethodParameter(String param) {
         assertTrue(param.length() <= 5, "Parameter should be of length smaller or equal to 5");
     }
@@ -56,7 +57,7 @@ After we have added a new parameterized test to our test class, its source code 
 
 ### Customizing the Display Name of Each Method Invocation
 
-Set the value of the **```@ParameterizedTest````** annotation’s name attribute.
+Set the value of the **```@ParameterizedTest```** annotation’s name attribute.
 This attribute supports the following placeholders:
 
    * **{index}**: The index of the current invocation. Note that the index of the first invocation is one.
@@ -72,6 +73,7 @@ After we have configured the custom display name of each method invocation, the 
     @DisplayName("Should pass a string of size equal to 5 to our test method with each invocation name")
     @ParameterizedTest(name = "{index} => message=''{0}''")
     @ValueSource(strings = {"Hello", "World", "example"})
+    
     void shouldVerifyStringOfSizeAsMethodParameterWIthInvocationName(String param) {
         assertTrue(param.length() <= 5, "Parameter should be of length smaller or equal to 5");
     }
@@ -93,7 +95,7 @@ using annotations found from [prg.junit.jupiter.params.provider](https://junit.o
  **Passing Enum values to our parametrized test** 
 
 If our parameterized test takes one enum value as a method parameter, we have to annotate our test method with the 
-```@EnumSource`` annotation and specify the enum values which are passed to our test method.`
+```@EnumSource``` annotation and specify the enum values which are passed to our test method.`
 
 ```
     enum Status {
@@ -107,6 +109,7 @@ If our parameterized test takes one enum value as a method parameter, we have to
     @DisplayName("Pass enum values to our test method")
     @ParameterizedTest(name = "{index} => status=''{0}''")
     @EnumSource(Status.class)
+    
     void shouldPassEnumValuesAsMethodParameter(Status status) {
         assertFalse(status.toString().equalsIgnoreCase("PENDING"));
     }
@@ -123,6 +126,7 @@ If our parameterized test takes one enum value as a method parameter, we have to
         @DisplayName("Should pass only the specified enum value as a method parameter")
         @ParameterizedTest(name = "{index} => status=''{0}''")
         @EnumSource(value = Status.class, names = {"APPROVED"})
+        
         void shouldPassEnumValueAsMethodParameter(Status status) {
             Status expStatus = Status.APPROVED;
             assertEquals(expStatus,status);
@@ -149,6 +153,7 @@ To pass multiple method parameters to our parameterized test and the provided te
     @DisplayName("Pass params using CsvSource")
     @ParameterizedTest(name = "{index} => input={0}, expected={1}")
     @CsvSource(value = {"test:test", "tEst:test", "Java:java"}, delimiter = ':')
+    
     void toLowerCase_ShouldGenerateTheExpectedLowercaseValue(String input, String expected) {
         String actualValue = input.toLowerCase();
         assertEquals(expected, actualValue);
@@ -176,6 +181,7 @@ For example, we could use a CSV file like:
      @DisplayName("Should pass the method parameters provided by the test-data.csv file")
      @ParameterizedTest(name = "{index} => input={0}, expected={1}")
      @CsvFileSource(resources = "/TestData.csv", numLinesToSkip = 1)
+     
      void toUpperCase_ShouldGenerateTheExpectedUppercaseValueCSVFile(String input, String expected) {
          String actualValue = input.toUpperCase();
          assertEquals(expected, actualValue);
@@ -204,6 +210,7 @@ When we do this, we must remember to configure the name of the factory method.
     @DisplayName("Should pass the method parameters provided by factory method")
     @ParameterizedTest
     @MethodSource("provideStringsForIsBlank")
+    
     void isBlankShouldReturnTrueBlankStrings(String input, boolean expected) {
         assertEquals(expected, input.isEmpty());
     }
@@ -256,6 +263,7 @@ That’s why the provided method parameters must use the same order as the metho
      @DisplayName("Should pass the method parameters provided by Argument Provider")
      @ParameterizedTest
      @ArgumentsSource(CustomArgumentProvider.class)
+     
      void shouldReturnTrueForBlankStringsWithCustomProvider(String input, boolean expected) {
          assertEquals(expected, input.isEmpty());
      }

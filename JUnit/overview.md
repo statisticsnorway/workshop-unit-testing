@@ -8,7 +8,7 @@ JDK 8 brought very exciting features in java and most notably
 JUnit 5 aims to adapt java 8 style of coding and several other features as well, 
 that’s why java 8 is required to create and execute tests in JUnit 5.
 
-##Prerequisites
+## Prerequisites
 JUnit 5 requires Java 8 (or higher) at runtime. However, you can still test code that has been 
 compiled with previous versions of the JDK.
 
@@ -59,7 +59,7 @@ that we saw when we discussed JUnit 5’s basics.
 
 ### junit-jupiter-engine 
 
-An implementation of the ``junit-platform-engine``` API that runs JUnit 5 tests.
+An implementation of the ```junit-platform-engine``` API that runs JUnit 5 tests.
 
 ### junit-vintage-engine
 
