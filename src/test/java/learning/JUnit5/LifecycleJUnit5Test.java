@@ -1,4 +1,4 @@
-package learning.JUnit5.annotations.examples;
+package learning.JUnit5;
 
 import org.junit.jupiter.api.*;
 import java.util.stream.Stream;
