@@ -7,7 +7,7 @@ import java.io.File;
 
 public class OnlineStore {
 
-    protected final OnlineShoppingMall mall =
+    static protected final OnlineShoppingMall mall =
             JAXB.unmarshal(new File("src/test/resources/data"), OnlineShoppingMall.class);
 }
 
