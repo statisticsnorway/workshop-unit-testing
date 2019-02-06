@@ -150,4 +150,70 @@ or any other scripting language for which there is support for the Java Scriptin
 ```
 ![](../../../../../../media/ScriptBasedConditionDisabling.png)
 
+## Conditionally disabling tests 
+
+In Junit 4 there was ```@Ignore``` annotation which told a JUnit runner to skip the execution of that test. 
+
+In JUnit 5, the ```@Ignore``` annotation has been replaced with ``@Disabled```. But, far from just changing the name, 
+the JUnit team has also given us hooks into the test 
+execution functionality allowing for easy customization on when a test should be executed. 
+
+Let’s take a look at creating a custom ```@Disabled`` tag that will disable a test based on the operating system of 
+the host machine.
+
+The first step would be creating a class that implements the ExecutionCondition interface. 
+Implementing evaluateExecutionCondition gives access to ExtensionContext which provides extensive information 
+on the context of the test being executed; tags, display name, method, etc. 
+
+I won’t be using it in this example, but it can provide useful information when determining
+if a test should be disabled.
+
+In this example, we will simply look up the name of the host machine’s operation system and then disable the test if the os.name matches “Mac OS X”. 
+In the disabled method, the passed-in string is the reason the test is disabled. This will show up in test reports.
+
+```
+public class DisableOnMacCondition implements ExecutionCondition {
+    @Override
+    public ConditionEvaluationResult evaluateExecutionCondition(ExtensionContext context) {
+        String osName = System.getProperty("os.name");
+        if(osName.equalsIgnoreCase("Mac OS X")) {
+            return ConditionEvaluationResult.disabled("Test disabled on mac");
+        } else {
+            return ConditionEvaluationResult.enabled("Test enabled");
+        }
+    }
+}
+```
+After implementing the ExecutionCondition, we can create our own custom annotation, which is named as ```DisabledOnMac```
+
+```
+@Target({ElementType.METHOD, ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@ExtendWith(DisableOnMacCondition.class)
+public @interface DisabledOnMac {
+
+}
+```
+
+With the custom annotation created,
+you can annotate any test that might be problematic when it’s executed on a Mac with @DisabledOnMac.
+
+```
+    @Test
+    @DisabledOnMac
+    void testCustomAnnotaion(){
+        assertEquals(6, (3+3), "Sum should be 6");
+    }
+```
+
+Being able to conditionally execute tests can be very helpful.
+ 
+Lots of the benefits with this new functionality will come with integration tests or tests that
+reference system resources which might depend heavily upon local system configurations.
+ 
+Requiring developers to configure their systems to properly execute a test might be difficult to enforce. 
+So, having the ability to conditionally skip a test when a machine isn’t configured properly to run it is much better than doing a blanket ignore or, having to deal with a failing test.
+
+Let's move forward to pur next [topic](tagging.md)
+
 

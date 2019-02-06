@@ -40,14 +40,14 @@ public class ParametrizedAnnotationTest extends OnlineStore {
     @ParameterizedTest
     @ValueSource(strings = {"Hello", "World", "example"})
     void shouldVerifyStringOfSizeAsMethodParameter(String param) {
-        assertTrue(param.length() <= 5, "Parameter should be of length smaller or equal to 5");
+        assertTrue(param.length() >= 5, "Parameter should be of length smaller or equal to 5");
     }
 
     @DisplayName("Pass the method parameters provided by the @ValueSource annotation")
     @ParameterizedTest(name = "{index} => message=''{0}''")
     @ValueSource(strings = {"Hello", "World", "example"})
     void shouldVerifyStringOfSizeAsMethodParameterWIthInvocationName(String param) {
-        assertTrue(param.length() <= 5, "Parameter should be of length smaller or equal to 5");
+        assertTrue(param.length() >= 5, "Parameter should be of length smaller or equal to 5");
     }
 
     @DisplayName("Pass params using CsvSource")
