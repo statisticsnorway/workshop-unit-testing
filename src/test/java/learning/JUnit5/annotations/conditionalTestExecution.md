@@ -47,7 +47,7 @@ public class ConditionalTestExecutionDemoTest {
 
 ## Java Runtime Environment Conditions
 A container or test may be enabled or disabled on a particular version of the Java Runtime Environment 
-(JRE) via the **```@EnabledOnJre```** and **``@DisabledOnJre annotations```**.
+(JRE) via the **```@EnabledOnJre```** and **```@DisabledOnJre annotations```**.
 
 ```
 @DisplayName("Enable test on Java 8")
@@ -154,11 +154,11 @@ or any other scripting language for which there is support for the Java Scriptin
 
 In Junit 4 there was ```@Ignore``` annotation which told a JUnit runner to skip the execution of that test. 
 
-In JUnit 5, the ```@Ignore``` annotation has been replaced with ``@Disabled```. But, far from just changing the name, 
+In JUnit 5, the ```@Ignore``` annotation has been replaced with ```@Disabled```. But, far from just changing the name, 
 the JUnit team has also given us hooks into the test 
 execution functionality allowing for easy customization on when a test should be executed. 
 
-Let’s take a look at creating a custom ```@Disabled`` tag that will disable a test based on the operating system of 
+Let’s take a look at creating a custom ```@Disabled``` tag that will disable a test based on the operating system of 
 the host machine.
 
 The first step would be creating a class that implements the ExecutionCondition interface. 
