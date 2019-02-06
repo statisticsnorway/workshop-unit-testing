@@ -158,10 +158,10 @@ In JUnit 5, the ```@Ignore``` annotation has been replaced with ```@Disabled```.
 the JUnit team has also given us hooks into the test 
 execution functionality allowing for easy customization on when a test should be executed. 
 
-Let’s take a look at creating a custom ```@Disabled``` tag that will disable a test based on the operating system of 
+Let’s take a look at creating a custom ```@Disabled`` tag that will disable a test based on the operating system of 
 the host machine.
 
-The first step would be creating a class that implements the ExecutionCondition interface. 
+The **first step** would be creating a class that implements the ```ExecutionCondition`` interface. 
 Implementing evaluateExecutionCondition gives access to ExtensionContext which provides extensive information 
 on the context of the test being executed; tags, display name, method, etc. 
 
@@ -196,7 +196,7 @@ public @interface DisabledOnMac {
 ```
 
 With the custom annotation created,
-you can annotate any test that might be problematic when it’s executed on a Mac with @DisabledOnMac.
+you can annotate any test that might be problematic when it’s executed on a Mac with ```@DisabledOnMac```.
 
 ```
     @Test
