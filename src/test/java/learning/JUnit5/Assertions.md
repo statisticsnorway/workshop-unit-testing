@@ -168,7 +168,7 @@ Before we will take a closer look at these methods, we have to know a few basic 
        
          Refer [code examples](assertions)
    
-    7. **assertAll**
+   7. **assertAll**
        * One of the new assertion introduced in JUnit 5 is assertAll.
          
          This assertion allows the creation of grouped assertions, where all the assertions
@@ -178,7 +178,7 @@ Before we will take a closer look at these methods, we have to know a few basic 
          
          Let’s define a grouped assertion: 
          
-         ```
+        ```
          @Test
          public void givenMultipleAssertion_whenAssertingAll_thenOK() {
              assertAll(
@@ -191,7 +191,7 @@ Before we will take a closer look at these methods, we have to know a few basic 
          ```
        [Code example](assertions/AssertAllTest.java)
        
-    8. **assertIterableEquals**
+   8. **assertIterableEquals**
        * The assertIterableEquals asserts that the expected and the actual iterables are 
        deeply equal.
          
@@ -202,7 +202,7 @@ Before we will take a closer look at these methods, we have to know a few basic 
          With this consideration, let’s see how we can assert that two lists of different 
          types (LinkedList and ArrayList for example) are equal:
          
-         ```
+        ```
          @Test
          public void givenTwoLists_whenAssertingIterables_thenEquals() {
              Iterable<String> al = new ArrayList<>(asList("Java", "Junit", "Test"));
@@ -211,14 +211,14 @@ Before we will take a closer look at these methods, we have to know a few basic 
              assertIterableEquals(al, ll);
          }
          ```
-     9. **assertThrows**
+   9. **assertThrows**
         * In order to increase simplicity and readability, the new assertThrows assertion 
         allows us a clear and a simple way to assert if an executable throws the specified 
         exception type.
           
           Let’s see how we can assert a thrown exception:
           
-          ```
+         ```
           @Test
           void whenAssertingException_thenThrown() {
               Throwable exception = assertThrows(
@@ -233,36 +233,35 @@ Before we will take a closer look at these methods, we have to know a few basic 
           The assertion will fail if no exception is thrown, or if an exception of a 
           different type is thrown.
           
-     10. **assertTimeout** and **assertTimeoutPreemptively**
+   10. **assertTimeout** and **assertTimeoutPreemptively**
      
-     In case we want to assert that the execution of a supplied Executable ends 
+        * In case we want to assert that the execution of a supplied Executable ends 
      before a given Timeout, we can use the assertTimeout assertion:
      
-     ```
-     @Test
-     public void whenAssertingTimeout_thenNotExceeded() {
-         assertTimeout(
-           ofSeconds(2), 
-           () -> {
-             // code that requires less then 2 minutes to execute
-             Thread.sleep(1000);
-           }
-         );
-     }
-     ```
+         ```
+         @Test
+              public void whenAssertingTimeout_thenNotExceeded() {
+                  assertTimeout(
+                    ofSeconds(2), 
+                    () -> {
+                      // code that requires less then 2 minutes to execute
+                      Thread.sleep(1000);
+                    }
+                  );
+              }
+         ```
+   However, with the ***assertTimeout*** assertion, the supplied executable will be executed in the same thread of the calling code. 
+   Consequently, execution of the supplier won’t be preemptively aborted if the 
+   timeout is exceeded.
      
-     However, with the ***assertTimeout*** assertion, the supplied executable will be executed in the same thread of the calling code. 
-     Consequently, execution of the supplier won’t be preemptively aborted if the 
-     timeout is exceeded.
-     
-     In case we want to be sure that execution of the executable will be aborted once 
+   In case we want to be sure that execution of the executable will be aborted once 
      it exceeds the timeout, we can use the ***assertTimeoutPreemptively*** assertion.
      
-     Both assertions can accept, instead of an Executable, 
+   Both assertions can accept, instead of an Executable, 
      a ThrowingSupplier, representing any generic block of code that returns an object 
      and that can potentially throw a Throwable.
      
-     Let's move to next topic [Dynamic Tests](DynamicTests.md)
+   Let's move to next topic [Dynamic Tests](DynamicTests.md)
 
           
     

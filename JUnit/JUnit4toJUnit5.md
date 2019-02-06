@@ -65,4 +65,4 @@ At the end of this section , we can:
    Check [pom.xml](../pom.xml) for list of dependencies. To check the basic setup run 
    [JUnit5](../src/test/java/learning/JUnit5/LifecycleJUnit5Test.java). 
    
-   Let´s start writing JUnit-5 tests ! [Go](../src/test/java/learning/JUnit5/annotations/annotations.md)
+   Let´s start writing JUnit-5 tests ! [Go](../src/test/java/learning/JUnit5/Annotations.md)
