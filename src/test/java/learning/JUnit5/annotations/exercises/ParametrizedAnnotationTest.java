@@ -20,7 +20,19 @@ public class ParametrizedAnnotationTest extends OnlineStore {
 
     @DisplayName("Test to verify the generated customer list")
     void shouldGetCustomerList(){
+        //hint: fetch values through generateCustomerData. Make changes as per Argument Provider
+        // Use : assertTrue((customerList.size() == 10), "Fetched list should contain 10 customer records");
        //TODO: Verify that list of customers generated through sample model contains all the 10 customers
     }
+
+    static List<Customer> generateCustomerData(){
+        Iterable<Customer> customerIterable = mall.getCustomerList();
+        List<Customer> customerList = new ArrayList<>();
+        Consumer<Customer> consumer = o -> customerList.add(o);
+
+        customerIterable.forEach(consumer);
+        return customerList;
+    }
+
 
 }

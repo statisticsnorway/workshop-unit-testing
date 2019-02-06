@@ -95,3 +95,5 @@ not even show up in the test report. This is different from disabled, where disa
         </plugins>
     </build>
 ```
+
+Lets move to [JUnit 5 Assertions](../assertions/assertions.md)
