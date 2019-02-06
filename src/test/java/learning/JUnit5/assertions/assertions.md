@@ -84,6 +84,7 @@ It also has overloaded methods for different data types e.g. boolean[], char[], 
 If we want to verify that the expected value (or object) is not equal to the actual value (or object), we have to use
  the **```assertNotEquals() ```** method of the Assertions class.
 
+
 **Code** [AssertEqualsTest.java](AssertEqualsTest.java)
 
 #### Asserting Object References
