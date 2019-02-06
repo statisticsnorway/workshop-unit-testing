@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@DisplayName("Assertion: assertTTrue()/assertFalse() in JUnit 5")
+@DisplayName("Assertion: assertTrue()/assertFalse() in JUnit 5")
 public class AssertTrueTest extends OnlineStore {
 
     private static List<Customer> customerList = null;

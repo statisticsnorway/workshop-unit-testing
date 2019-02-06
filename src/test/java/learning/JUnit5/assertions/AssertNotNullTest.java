@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 
+@DisplayName("Assertion: assertNotNull()/assertNull() in JUnit 5")
 public class AssertNotNullTest extends OnlineStore {
 
     @DisplayName("assertNotNull example")

@@ -18,7 +18,7 @@ The order of the parameters of the assertions changed, moving the output message
 Thanks to the support of Java 8, the output message can be a Supplier, allowing lazy evaluation of it.
 
 
-**Writing Assertions with JUnit 5**
+## Writing Assertions with JUnit 5
 
 Use ``` org.junit.jupiter.api.Assertions``` class. It provides *static* factory methods that we can use for writing assertions.
 
@@ -30,7 +30,7 @@ Before we will take a closer look at these methods, we have to know a few basic 
   * If we want to compare two values (or objects), we have to pass these values (or objects) to the invoked assertion 
  method in this order: the expected value (or object) and the actual value (or object).
  
- 1. **Asserting Boolean values**
+ #### Asserting Boolean values
  
  If we want to verify that a boolean value is true, 
  we have to use the assertTrue() method of the Assertions class. In order words, we have to use this assertion:
@@ -50,7 +50,7 @@ Before we will take a closer look at these methods, we have to know a few basic 
  ```
  **Code** Refer [AssertTrueTest.java](AssertTrueTest.java)
  
- 2. **Asserting Null or Not Null**
+ #### Asserting Null or Not Null
  
  If we want to verify that an object is not null, we have to use the assertNotNull() 
  method of the Assertions class. 
@@ -65,8 +65,36 @@ public static void assertNotNull(Object actual, Supplier<String> messageSupplier
 
 **Code** [AssertNotNullTest.java](AssertNotNullTest.java)
 
-3. **Asserting two objects are equal**
+#### Asserting two objects are equal
 
 If we want to verify that the expected value (or object) is equal to the actual value (or object), 
 we have to use the assertEquals() method of the Assertions class.
+
+```
+    public static void assertEquals(int expected, int actual) 
+
+    public static void assertEquals(int expected, int actual, String message) 
+
+    public static void assertEquals(int expected, int actual, Supplier<String> messageSupplier) 
+
+```
+
+It also has overloaded methods for different data types e.g. boolean[], char[], int[] etc.
+
+If we want to verify that the expected value (or object) is not equal to the actual value (or object), we have to use
+ the **```assertNotEquals() ```** method of the Assertions class.
+
+**Code** [AssertEqualsTest.java](AssertEqualsTest.java)
+
+#### Asserting Object References
+
+To ensure that two objects refer to the same object, use the ```assertSame() ``` method of the Assertions class.
+
+**``` @assertSame(Object expected, Object actual, String message)```**
+
+### Asserting two arrays are equal
+To verify that two arrays are equal, use the ```assertArrayEquals() ``` method of the Assertions class. For example, 
+if we want verify that two int arrays are equal, we have to use this assertion.
+
+**``` @assertArrayEquals(int[] expected, int[] actual, Supplier<String> messageSupplier)```**
 
