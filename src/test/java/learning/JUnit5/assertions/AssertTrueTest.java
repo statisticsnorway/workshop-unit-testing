@@ -35,7 +35,7 @@ public class AssertTrueTest extends OnlineStore {
 
     @DisplayName("assertFalse example")
     @Test
-    void verifyCustomerListConsistStringTypeData() {
+    void verifyAllCustomerAgesGreatorThan18() {
         assertFalse(customerList
                 .stream()
                 .filter(customer -> customer.getAge() < 18)

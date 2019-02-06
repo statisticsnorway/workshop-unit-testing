@@ -3,7 +3,7 @@
 Lambda expressions take advantage of parallel process capabilities of multi-core environments as seen with the support of 
 pipeline operations on data in the Stream API.
 
-They are anonymous methods (methods without names) used to implement a method defined by a functional interface. 
+They are **anonymous methods** (methods without names) used to implement a method defined by a functional interface. 
 It’s important to know what a functional interface is before getting your hands dirty with lambda expressions.
 
 **Functional interface**: 
@@ -124,7 +124,9 @@ It is possible to write one generic interface and handle different return types 
 
 ```
 
+Refer [**Code**](LamdasDemo.java) for code snippet mentioned above.
 
+Refer [**Code**](LamdasExamples.java) for a example based on sample model using lamdas.
 
 **Supplier** : ``` java.util.function.Supplier ``` is a functional interface. 
 The supplier can be used in all contexts where there is no input but an output is expected. 

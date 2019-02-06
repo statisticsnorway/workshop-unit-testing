@@ -31,7 +31,7 @@ After we have added a new parameterized test to our test class, its source code 
 
 ```
                                       
-![](../../../../../../media/ParameterizedTest.png)   
+![](../../../../../media/ParameterizedTest.png)   
 
 ### Customizing the Display Name of Each Method Invocation
 
@@ -57,7 +57,7 @@ After we have configured the custom display name of each method invocation, the 
 
 ```  
 
-![](../../../../../../media/ParameterizedTestWithName.png)                             
+![](../../../../../media/ParameterizedTestWithName.png)                             
 
 
 ### Using Argument Sources
@@ -92,7 +92,7 @@ If our parameterized test takes one enum value as a method parameter, we have to
     
 ```
 
-![](../../../../../../media/EnumParameterizedTest.png)
+![](../../../../../media/EnumParameterizedTest.png)
 
 
 **Note**: To specify enum values that are passed to test method, you can specify the enum values by setting value of 
@@ -108,7 +108,7 @@ If our parameterized test takes one enum value as a method parameter, we have to
         }
     
 ```
-![](../../../../../../media/EnumValuParamTest.png)
+![](../../../../../media/EnumValuParamTest.png)
 
 
 * **Passing Method Parameters by Using the CSV Format**:
@@ -161,7 +161,7 @@ For example, we could use a CSV file like:
      }
  ```
  
- ![](../../../../../../media/ParamTestCsvFile.png)
+ ![](../../../../../media/ParamTestCsvFile.png)
  
 * **Using Factory method**: 
 If all the parameterized tests which needs parameters are from same test class and 
@@ -196,7 +196,7 @@ When we do this, we must remember to configure the name of the factory method.
 
 ```
 
-![](../../../../../../media/ParamTestusingFactoryMethod.png)
+![](../../../../../media/ParamTestusingFactoryMethod.png)
 
 
 * **Using Customer ArgumentsProvider**
@@ -240,6 +240,6 @@ That’s why the provided method parameters must use the same order as the metho
      }
  ```      
  
-  Check [@ParameterizedTest example](examples/ParametrizedAnnotationTest.java)
+  Check [@ParameterizedTest example](annotations/examples/ParametrizedAnnotationTest.java)
   
-  Lets move to [next section](conditionalTestTesting.md)
+  Lets move to [next section](ConditionalTesting.md)

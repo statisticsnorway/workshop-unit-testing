@@ -45,7 +45,7 @@ public class ConditionalTestExecutionDemoTest {
 
 ```
 
-[**Code**](examples/ConditionalTestExecutionDemoTest.java) 
+[**Code**](annotations/examples/ConditionalTestExecutionDemoTest.java) 
 
 ## Java Runtime Environment Conditions
 A container or test may be enabled or disabled on a particular version of the Java Runtime Environment 
@@ -75,7 +75,7 @@ A container or test may be enabled or disabled on a particular version of the Ja
     
 ```
 
-![](../../../../../../media/ConditionalDisabling.png)
+![](../../../../../media/ConditionalDisabling.png)
 
 ## System Property Conditions
 
@@ -97,7 +97,7 @@ The value supplied via the matches attribute will be interpreted as a regular ex
     }
 ```
 
-![](../../../../../../media/SystemPropertyBasedConditionalTEsting.png)
+![](../../../../../media/SystemPropertyBasedConditionalTEsting.png)
 
 
 ## Script-based conditions
@@ -150,7 +150,7 @@ or any other scripting language for which there is support for the Java Scriptin
     }
     
 ```
-![](../../../../../../media/ScriptBasedConditionDisabling.png)
+![](../../../../../media/ScriptBasedConditionDisabling.png)
 
 ## Conditionally disabling tests 
 
@@ -173,7 +173,7 @@ if a test should be disabled.
 In this example, we will simply look up the name of the host machine’s operation system and then disable the test if the os.name matches “Mac OS X”. 
 In the disabled method, the passed-in string is the reason the test is disabled. This will show up in test reports.
 
-[**Code**](examples/customAnnotation/DisableOnMacCondition.java)
+[**Code**](annotations/examples/customAnnotation/DisableOnMacCondition.java)
 ```
 public class DisableOnMacCondition implements ExecutionCondition {
     @Override
@@ -197,7 +197,7 @@ public @interface DisabledOnMac {
 
 }
 ```
-[**Code**](examples/customAnnotation/DisabledOnMac.java)
+[**Code**](annotations/examples/customAnnotation/DisabledOnMac.java)
 
 With the custom annotation created,
 you can annotate any test that might be problematic when it’s executed on a Mac with ```@DisabledOnMac```.
@@ -210,7 +210,7 @@ you can annotate any test that might be problematic when it’s executed on a Ma
     }
 ```
 
-[**Code**](examples/customAnnotation/CustomConditionDemoTest.java)
+[**Code**](annotations/examples/customAnnotation/CustomConditionDemoTest.java)
 
 Being able to conditionally execute tests can be very helpful.
  
@@ -220,6 +220,6 @@ reference system resources which might depend heavily upon local system configur
 Requiring developers to configure their systems to properly execute a test might be difficult to enforce. 
 So, having the ability to conditionally skip a test when a machine isn’t configured properly to run it is much better than doing a blanket ignore or, having to deal with a failing test.
 
-Let's move forward to pur next [topic](tagging.md)
+Let's move forward to pur next [topic](TaggingAndFiltering.md)
 
 
