@@ -66,10 +66,12 @@ public class TaggingDemoTest {
 
 ```
 
+[**Code](examples/TaggingDemoTest.java)
+
 **Filtering by tag can be done in intelliJ**: Create configuration. Mention the required tag. the filtered tests will 
 not even show up in the test report. This is different from disabled, where disabled tests still show up as skipped. 
 
-![](../../../../../../media/taggingInIntelliJ.png)
+![](../../../../../../media/TaggingInIntelliJ.png)
 
 **Filtering in Maven**: 
 
