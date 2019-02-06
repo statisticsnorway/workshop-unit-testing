@@ -28,12 +28,12 @@ public class ParametrizedAnnotationTest extends OnlineStore {
 
     static Stream<Arguments> generateCustomerData(){
         Iterable<Customer> customerIterable = mall.getCustomerList();
-        List<String> nameList = new ArrayList<>();
-        Consumer<Customer> consumer = o -> nameList.add(o.getName());
+        List<Customer> nameList = new ArrayList<>();
+        Consumer<Customer> consumer = o -> nameList.add(o);
 
         customerIterable.forEach(consumer);
-        Stream<Arguments> of = Stream.of(Arguments.of(nameList));
-        return of;
+        Stream<Arguments> customerNameList = Stream.of(Arguments.of(nameList));
+        return customerNameList;
     }
 
 }

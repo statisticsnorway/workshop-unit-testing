@@ -238,8 +238,8 @@ That’s why the provided method parameters must use the same order as the metho
      void shouldReturnTrueForBlankStringsWithCustomProvider(String input, boolean expected) {
          assertEquals(expected, input.isEmpty());
      }
- ```
+ ```      
  
   Check [@ParameterizedTest example](examples/ParametrizedAnnotationTest.java)
   
-  Lets move to [next section](conditionalTestExecution.md)
+  Lets move to [next section](conditionalTestTesting.md)
