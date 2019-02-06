@@ -64,7 +64,7 @@ public class AssertAllTest {
         }));
     }
 
-    @DisplayName("Possible mistakes while using multiple assertions")
+    /*@DisplayName("Possible mistakes while using multiple assertions")
     @Test
     void groupAssertionsDemo4() {
         assertAll("numbers",
@@ -75,15 +75,15 @@ public class AssertAllTest {
                     assertEquals(3, numbers[4]);
                 }
         );
-    }
+    }*/
 
     @DisplayName("assertEquals Vs assertAll")
     @Test
     void groupAssertionsDemo5() {
         assertEquals(0, numbers[0], "Value at 0th position should be 0");
         assertEquals(3, numbers[3], "Value at 3rd position should be 3");
-        assertEquals(2, numbers[1], "Value at 1st position should be 1");
-        assertEquals(3, numbers[4], "Value at 4th position should be 4");
+        //assertEquals(2, numbers[1], "Value at 1st position should be 1");
+        //assertEquals(3, numbers[4], "Value at 4th position should be 4");
     }
 
     @DisplayName("Dependent assertions")

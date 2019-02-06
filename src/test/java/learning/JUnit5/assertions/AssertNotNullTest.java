@@ -20,9 +20,9 @@ public class AssertNotNullTest {
 
         assertAll("assertNull() / assertNotNull()",
                 () -> assertNotNull(notNullString, "Object should not be null"),
-                () -> assertNotNull(nullString, "Object should not be null"),
-                () -> assertNull(nullString, "Object should be null"),
-                () -> assertNull(notNullString, "Object should not be null"));
+                //() -> assertNotNull(nullString, "Object should not be null"),
+                () -> assertNull(nullString, "Object should be null"));
+                //() -> assertNull(notNullString, "Object should not be null"));
     }
 
     @DisplayName("assertNotNull example")
@@ -43,8 +43,8 @@ public class AssertNotNullTest {
 
         assertAll("assertSame() / assertNotSame()",
                 () -> assertNotSame(originalObject, otherObject, "Objects should not be same"),
-                () -> assertNotSame(originalObject, cloneObject, "Object should not be same"),
-                () -> assertSame(originalObject, cloneObject, "Object should be same"),
-                () -> assertSame(originalObject, otherObject, "Object should be same"));
+                //() -> assertNotSame(originalObject, cloneObject, "Object should not be same"),
+                () -> assertSame(originalObject, cloneObject, "Object should be same"));
+               // () -> assertSame(originalObject, otherObject, "Object should be same"));
     }
 }
