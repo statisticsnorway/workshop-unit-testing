@@ -3,8 +3,8 @@
 [ExecutionCondition](https://junit.org/junit5/docs/current/api/org/junit/jupiter/api/extension/ExecutionCondition.html) 
 defines the extension API for programmatic, conditional test execution.
 
-An ```ExecutionCondition`` is evaluated for each container (e.g., a test class) to determine if all the tests it contains 
-should be executed based on the supplied ExtensionContext.`
+An ```ExecutionCondition``` is evaluated for each container (e.g., a test class) to determine if all the tests it contains 
+should be executed based on the supplied ExtensionContext.
  
 Similarly, an ```ExecutionCondition``` is evaluated for each test to determine if a given test method should be executed 
 based on the supplied ExtensionContext.
@@ -196,7 +196,7 @@ public @interface DisabledOnMac {
 ```
 
 With the custom annotation created,
-you can annotate any test that might be problematic when it’s executed on a Mac with ```@DisabledOnMac```.
+you can annotate any test that might be problematic when it’s executed on a Mac with ```@DisabledOnMac``.
 
 ```
     @Test
