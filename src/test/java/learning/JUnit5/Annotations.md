@@ -26,8 +26,6 @@ Test classes and test methods can declare custom display names — with spac
 and even emojis — that will be displayed by test runners and test reporting.
 
 
-
-
 ## **@Disabled**
 Entire test classes or individual test methods may be disabled via the **```@Disabled```** annotation.
 Junit 4 had ```@Ignore``` annotation.
@@ -46,6 +44,7 @@ void repeatedTest(TestInfo testInfo) {
     System.out.println("Executing repeated test");
   
     assertEquals(2, Math.addExact(1, 1), "1 + 1 should equal 2");
+ }
 ```
 
 The **above test will be executed three times** as if the same test was written three times.
@@ -60,7 +59,7 @@ Check [code example](annotations/examples/RepeatedAnnotationTest.java)
 ## Configuring the Test Name
 Identifiers can be configured further using the name attribute:
 
-```
+``` java
 @RepeatedTest(value = 3, name = RepeatedTest.LONG_DISPLAY_NAME)
 void repeatedTestWithLongName() {
     System.out.println("Executing repeated test with long name");
@@ -77,7 +76,7 @@ Another option is to use RepeatedTest.SHORT_DISPLAY_NAME which will produce the 
 
 If however, we need to use our customized name, it is very much possible:
 
-```
+``` java
 @RepeatedTest(value = 3, name = "Custom name {currentRepetition}/{totalRepetitions}")
 void repeatedTestWithCustomDisplayName(TestInfo testInfo) {
     assertEquals(2, Math.addExact(1, 1), "1 + 1 should equal 2");
@@ -96,7 +95,7 @@ and no additional configuration is required. The output is pretty much what we e
 Apart from the name attribute, JUnit provides access to the repetition metadata in our test code as well. 
 This is achieved by adding a RepetitionInfo parameter to our test method:
 
-```
+``` java
 @RepeatedTest(3)
 void repeatedTestWithRepetitionInfo(RepetitionInfo repetitionInfo) {
     System.out.println("Repetition #" + repetitionInfo.getCurrentRepetition());

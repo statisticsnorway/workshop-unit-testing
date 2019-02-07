@@ -6,7 +6,7 @@ We can explicitly mark them to be scanned for test cases using **@Nested** annot
  
 JUnit Nested test classes should be non-static.
 
-```
+``` java
 @BeforeAll
     static void setUpBeforeClass() throws Exception {
         System.out.println("@BeforeAll - Outer Class");
@@ -60,7 +60,7 @@ If we want @BeforeAll and @AfterAll methods in the nested test class,
 
 The default behavior of JUnit test cases is “per-method”.
 
-```
+``` java
     @Nested
 	@TestInstance(Lifecycle.PER_CLASS)
 	class InnerClass {

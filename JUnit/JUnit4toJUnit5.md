@@ -31,7 +31,7 @@ At the end of this section , we can:
     
    If we need to migrate from JUnit 4 to J Unit 5 and keep tests written in JUnit 4,
    add dependency for that:
-   ```
+   ``` xml
    <dependency>
        <groupId>org.junit.vintage</groupId>
        <artifactId>junit-vintage-engine</artifactId>
@@ -50,7 +50,7 @@ At the end of this section , we can:
    To configure support for JUnit Jupiter based tests, configure test scoped dependencies on the JUnit Jupiter API and 
    the JUnit Jupiter TestEngine implementation similar to the following.
    
-   ```
+   ``` xml
    <build>
        <plugins>
            <plugin>

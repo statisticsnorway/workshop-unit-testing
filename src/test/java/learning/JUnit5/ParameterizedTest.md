@@ -21,7 +21,7 @@ If our test method takes only one method parameter that is either a String or a 
 After we have added a new parameterized test to our test class, its source code looks as follows:
 
 
-```
+``` java
     @DisplayName("Should pass a non-null message to our test method")
     @ParameterizedTest
     @ValueSource(strings = {"Hello", "World", "example"})
@@ -47,7 +47,7 @@ This attribute supports the following placeholders:
 Let’s provide a custom display name to our test method. This display name must display the index of the current invocation and the provided method parameter. 
 After we have configured the custom display name of each method invocation, the source code of our test class looks as follows: 
 
-```
+``` java
     @DisplayName("Should pass a string of size equal to 5 to our test method with each invocation name")
     @ParameterizedTest(name = "{index} => message=''{0}''")
     @ValueSource(strings = {"Hello", "World", "example"})
@@ -74,7 +74,7 @@ using annotations found from [prg.junit.jupiter.params.provider](https://junit.o
 If our parameterized test takes one enum value as a method parameter, we have to annotate our test method with the 
 ```@EnumSource``` annotation and specify the enum values which are passed to our test method.`
 
-```
+``` java
     enum Status {
         APPROVED,
         REJECT,
@@ -98,7 +98,7 @@ If our parameterized test takes one enum value as a method parameter, we have to
 **Note**: To specify enum values that are passed to test method, you can specify the enum values by setting value of 
 **``` @EnumSource ```** annotation´s names attribute.
 
-```
+``` java
         @DisplayName("Should pass only the specified enum value as a method parameter")
         @ParameterizedTest(name = "{index} => status=''{0}''")
         @EnumSource(value = Status.class, names = {"APPROVED"})
@@ -124,7 +124,7 @@ To pass multiple method parameters to our parameterized test and the provided te
    * The values found from each line must use the same order as the method parameters of our test method.
 
 
-```
+``` java
     @DisplayName("Pass params using CsvSource")
     @ParameterizedTest(name = "{index} => input={0}, expected={1}")
     @CsvSource(value = {"test:test", "tEst:test", "Java:java"}, delimiter = ':')
@@ -151,7 +151,7 @@ For example, we could use a CSV file like:
   
  We can load the CSV file and ignore the header column with **```@CsvFileSource```**: 
  
- ```
+ ``` java
      @DisplayName("Should pass the method parameters provided by the test-data.csv file")
      @ParameterizedTest(name = "{index} => input={0}, expected={1}")
      @CsvFileSource(resources = "/TestData.csv", numLinesToSkip = 1)
@@ -179,7 +179,7 @@ Rules to create static factory method:
 Must ensure that its return value is used when JUnit 5 determines the method parameters of our parameterized test. 
 We can do this by annotating our test method with the **```@MethodSource```** annotation. 
 When we do this, we must remember to configure the name of the factory method. 
-```
+``` java
     @DisplayName("Should pass the method parameters provided by factory method")
     @ParameterizedTest
     @MethodSource("provideStringsForIsBlank")
@@ -216,7 +216,7 @@ That’s why the provided method parameters must use the same order as the metho
 
 **First**, create ArgumentsProvider class:
 
-```
+``` java
     public class CustomArgumentProvider implements ArgumentsProvider {
     @Override
     public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) throws Exception {
@@ -231,7 +231,7 @@ That’s why the provided method parameters must use the same order as the metho
 
 **Second**, configure created ArgumentsProvider by annotation test emthod with **``` @ArgumentsSource```** annotation.
 
- ```
+ ``` java
      @DisplayName("Should pass the method parameters provided by Argument Provider")
      @ParameterizedTest
      @ArgumentsSource(CustomArgumentProvider.class)

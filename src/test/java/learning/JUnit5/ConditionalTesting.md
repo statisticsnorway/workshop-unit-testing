@@ -25,7 +25,7 @@ A container or test may be enabled or disabled on a particular operating system 
 **```@EnabledOnOs```** and **```@DisabledOnOs```** annotations.
 
 
-```
+``` java
 @EnabledOnOs(OS.MAC)
 public class ConditionalTestExecutionDemoTest {
 
@@ -51,8 +51,8 @@ public class ConditionalTestExecutionDemoTest {
 A container or test may be enabled or disabled on a particular version of the Java Runtime Environment 
 (JRE) via the **```@EnabledOnJre```** and **```@DisabledOnJre annotations```**.
 
-```
-@DisplayName("Enable test on Java 8")
+``` java
+    @DisplayName("Enable test on Java 8")
     @Test
     @EnabledOnJre(JRE.JAVA_8)
     void verifyTestEnabledOnJre8() {
@@ -83,7 +83,7 @@ A container or test may be enabled or disabled based on the value of the named J
 **```@EnabledIfSystemProperty```** and **```@DisabledIfSystemProperty```** annotations. 
 The value supplied via the matches attribute will be interpreted as a regular expression.
 
-```
+``` java
     @Test
     @EnabledIfSystemProperty(named = "os.arch", matches = ".*64.*")
     void verifyTestEnabledOnlyOn64BitArchitecture(){
@@ -107,8 +107,8 @@ a script configured via the **```@EnabledIf```** or **```@DisabledIf```** annota
 or any other scripting language for which there is support for the Java Scripting API.
 
 
-```
-@Test
+``` java
+    @Test
     @EnabledIf("2*3 == 6")                            //Static JAVASCRIPT expression
     void verifyTestExecutesOnlyIfConditionTrue() {
         assertEquals(6, (3 + 3), "Sum should be 6");
@@ -174,7 +174,7 @@ In this example, we will simply look up the name of the host machine’s operati
 In the disabled method, the passed-in string is the reason the test is disabled. This will show up in test reports.
 
 [**Code**](annotations/examples/customAnnotation/DisableOnMacCondition.java)
-```
+``` java
 public class DisableOnMacCondition implements ExecutionCondition {
     @Override
     public ConditionEvaluationResult evaluateExecutionCondition(ExtensionContext context) {
@@ -189,7 +189,7 @@ public class DisableOnMacCondition implements ExecutionCondition {
 ```
 After implementing the ExecutionCondition, we can create our own custom annotation, which is named as ```DisabledOnMac```
 
-```
+``` java
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @ExtendWith(DisableOnMacCondition.class)
@@ -202,7 +202,7 @@ public @interface DisabledOnMac {
 With the custom annotation created,
 you can annotate any test that might be problematic when it’s executed on a Mac with ```@DisabledOnMac```.
 
-```
+``` java
     @Test
     @DisabledOnMac
     void testCustomAnnotaion(){

@@ -28,7 +28,7 @@ We could inject a mock to the class under test instead of the real implementatio
 
 Let’s look at an example of a class under test which has a dependency on ***``` CustomerDao```*** :
 
-```
+``` java
 public class CustomerService {
     private CustomerDao customerDao;
 
@@ -52,7 +52,7 @@ public class CustomerService {
 
 The following is the test that mocks the dependency using Mockito:
 
-```
+``` java
 class CustomerServiceTest {
 
     @Mock                          

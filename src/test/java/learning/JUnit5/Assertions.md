@@ -41,7 +41,7 @@ Before we will take a closer look at these methods, we have to know a few basic 
     * The assertArrayEquals assertion verifies that the expected and the actual arrays 
     are equals.
     
-    ```
+    ``` java
     @Test
     public void whenAssertingArraysEquality_thenEqual() {
         char[] expected = { 'J', 'u', 'p', 'i', 't', 'e', 'r' };
@@ -56,7 +56,7 @@ Before we will take a closer look at these methods, we have to know a few basic 
  2. **assertEquals and assertNotEquals**
     * In case we want to assert that two floats are equals, we can use the simple
      assertEquals assertion:
-    ```
+    ``` java
     @Test
     public void whenAssertingEquality_thenEqual() {
         float square = 2 * 2;
@@ -72,7 +72,7 @@ Before we will take a closer look at these methods, we have to know a few basic 
     we can still use the assertEquals but we have to pass the delta value as the third 
     parameter:
     
-    ```
+    ``` java
     @Test
     public void whenAssertingEqualityWithDelta_thenEqual() {
         float square = 2 * 2;
@@ -87,7 +87,7 @@ Before we will take a closer look at these methods, we have to know a few basic 
      * With the assertTrue assertion, it’s possible to verify the supplied conditions are
       true:
      
-     ```
+     ``` java
      @Test
      public void whenAssertingConditions_thenVerified() {
          assertTrue(5 > 4, "5 is greater the 4");
@@ -102,7 +102,7 @@ Before we will take a closer look at these methods, we have to know a few basic 
      Let’s see how we can assert the correctness of a BooleanSupplier using the 
      assertFalse assertion:
      
-     ```
+     ``` java
      @Test
      public void givenBooleanSupplier_whenAssertingCondition_thenVerified() {
          BooleanSupplier condition = () -> 5 > 6;
@@ -115,7 +115,7 @@ Before we will take a closer look at these methods, we have to know a few basic 
       * When we want to assert that an object is not null we can use the assertNotNull 
       assertion:
       
-      ```
+      ``` java
       @Test
       public void whenAssertingNotNull_thenTrue() {
           Object obj = new Object();
@@ -127,7 +127,7 @@ Before we will take a closer look at these methods, we have to know a few basic 
       
       In the opposite way, we can use the assertNull assertion to check if the actual is null:
       
-      ```
+      ``` java
       @Test
       public void whenAssertingNull_thenTrue() {
           Object obj = null;
@@ -143,7 +143,7 @@ Before we will take a closer look at these methods, we have to know a few basic 
        * When we want to assert that the expected and the actual refer to the same Object, 
        we must use the assertSame assertion:
        
-       ```
+       ``` java
        @Test
        public void whenAssertingSameObject_thenSuccessfull() {
            String language = "Java";
@@ -158,7 +158,7 @@ Before we will take a closer look at these methods, we have to know a few basic 
        the underlying cause. 
        This can be useful to mark a test when it’s development it’s not completed:
        
-       ```
+       ``` java
        @Test
        public void whenFailingATest_thenFailed() {
            // Test not completed
@@ -178,7 +178,7 @@ Before we will take a closer look at these methods, we have to know a few basic 
          
          Let’s define a grouped assertion: 
          
-        ```
+        ``` java
          @Test
          public void givenMultipleAssertion_whenAssertingAll_thenOK() {
              assertAll(
@@ -202,7 +202,7 @@ Before we will take a closer look at these methods, we have to know a few basic 
          With this consideration, let’s see how we can assert that two lists of different 
          types (LinkedList and ArrayList for example) are equal:
          
-        ```
+        ``` java
          @Test
          public void givenTwoLists_whenAssertingIterables_thenEquals() {
              Iterable<String> al = new ArrayList<>(asList("Java", "Junit", "Test"));
@@ -218,7 +218,7 @@ Before we will take a closer look at these methods, we have to know a few basic 
           
           Let’s see how we can assert a thrown exception:
           
-         ```
+         ``` java
          @Test
              public void testConvertToDoubleThrowException() {
                  String age = "eighteen";
@@ -242,7 +242,7 @@ Before we will take a closer look at these methods, we have to know a few basic 
         * In case we want to assert that the execution of a supplied Executable ends 
      before a given Timeout, we can use the assertTimeout assertion:
      
-         ```
+         ``` java
          @Test
               public void whenAssertingTimeout_thenNotExceeded() {
                   assertTimeout(

@@ -30,7 +30,7 @@ You can execute set of tests by including only those tagged tests in test plan O
     
 ## @Tag Annotation Usage
 
-```
+``` java
 @DisplayName("Test tagging")
 public class TaggingDemoTest {
 
@@ -75,7 +75,7 @@ not even show up in the test report. This is different from disabled, where disa
 
 **Filtering in Maven**: 
 
-```
+``` xml
 <build>
         <plugins>
             <plugin>

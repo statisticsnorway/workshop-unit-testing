@@ -24,7 +24,7 @@ The examples here are not dynamic in nature, but they’ll provide a good starti
 
 We’re going to create a Collection of *DynamicTest*:
 
-```
+``` java
  @TestFactory
     Collection<DynamicTest> dynamicTestsWithCollection() {
         return Arrays.asList(
@@ -48,7 +48,7 @@ We’re going to create a Collection of *DynamicTest*:
   
   The same test can be modified to return an Iterable, Iterator, or a Stream:
   
-  ```
+  ``` java
       @TestFactory
       Iterable<DynamicTest> dynamicTestsWithIterable() {
           return Arrays.asList(
@@ -80,8 +80,8 @@ We’re going to create a Collection of *DynamicTest*:
   
   ## Creating a Stream of DynamicTests
   
-  ```
-  @TestFactory
+  ``` java
+      @TestFactory
       Stream<DynamicTest> dynamicTestsFromStream() {
   
           // sample input and output
@@ -122,19 +122,23 @@ We’re going to create a Collection of *DynamicTest*:
       
   ```
    **input generator:**
-  ```Iterator<String> inputGenerator = inputList.iterator(); ``` 
+  ``` java
+  Iterator<String> inputGenerator = inputList.iterator(); 
+  ``` 
   
   The input generator is nothing but an Iterator of String. 
   It uses our inputList and returns the domain name one by one.
   
   The display name generator is fairly simple:
   
-  ``` Function<String, String> displayNameGenerator = (input) -> "Resolving: " + input; ```
+  ``` java
+  Function<String, String> displayNameGenerator = (input) -> "Resolving: " + input; 
+  ```
   
   The task of a display name generator is just to provide a display name for the test case that will be used in 
   JUnit reports or the JUnit tab of our IDE.
   
-  ```
+  ``` java
       DomainNameResolver resolver = new DomainNameResolver();
             ThrowingConsumer<String> testExecutor = (input) -> {
                 int id = inputList.indexOf(input);
@@ -146,13 +150,14 @@ We’re going to create a Collection of *DynamicTest*:
   the outputList and the actual output from an instance of DomainNameResolver.
   
   Now the last part is simply to assemble all the pieces and return as a Stream of DynamicTest:
-  ``` return DynamicTest.stream(
-        inputGenerator, displayNameGenerator, testExecutor);
+  ``` java
+  return 
+       DynamicTest.stream(inputGenerator, displayNameGenerator, testExecutor);
   ```
    ![](../../../../../media/DynamicTest2.png)
   
   
-  ```
+  ``` java
   @TestFactory
   Stream<DynamicTest> dynamicTestsForEmployeeWorkflows() {
       List<Employee> inputList = Arrays.asList(
