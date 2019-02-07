@@ -12,7 +12,7 @@ At the end of this section , we can:
 
    * Declare ```junit-jupiter-api``` dependency in ```pom.xml``` .
  This dependency provides the public API for writing tests and extensions. 
-``` 
+``` xml
  <dependency>
      <groupId>org.junit.platform</groupId>
      <artifactId>junit-platform-launcher</artifactId>

@@ -40,7 +40,7 @@ Based on these basic annotations, lets see one running example: [LifecycleJUnit5
 @RepeatedTest annotation introduced in JUnit 5. It provides us a powerful way to write any test that we want to 
 repeat several times.
 
-```
+``` java 
 @RepeatedTest(3)
 void repeatedTest(TestInfo testInfo) {
     System.out.println("Executing repeated test");
