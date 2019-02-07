@@ -1,15 +1,23 @@
 package store.model;
 
+import store.dao.CustomerDao;
+
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import java.util.List;
 
 public class Customer {
 
+
+    private int id;
     private String name;
     private Integer age;
     private Integer budget;
     private List<Item> wantToBuy;
+
+    public int getId() { return id; }
+
+    public void setId(int id) { this.id = id; }
 
     @XmlAttribute
     public String getName() {

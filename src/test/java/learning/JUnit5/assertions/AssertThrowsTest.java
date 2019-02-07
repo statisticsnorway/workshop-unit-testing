@@ -10,21 +10,16 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class AssertThrowsTest {
     @Test
     void whenAssertingException_thenThrown() {
-        Throwable exception = assertThrows(
-                IllegalArgumentException.class,
-                () -> {
-                    throw new IllegalArgumentException("Exception message");
-                }
-        );
+        Throwable exception = assertThrows(IllegalArgumentException.class, () -> { throw new IllegalArgumentException("Exception message"); });
+
         assertEquals("Exception message", exception.getMessage());
     }
 
     @Test
     public void testConvertToDoubleThrowException() {
         String age = "eighteen";
-        assertThrows(NumberFormatException.class, () -> {
-            convertToInt(age);
-        });
+
+        assertThrows(NumberFormatException.class, () -> { convertToInt(age); });
     }
 
     private static Integer convertToInt(String str) {

@@ -219,18 +219,22 @@ Before we will take a closer look at these methods, we have to know a few basic 
           Let’s see how we can assert a thrown exception:
           
          ```
-          @Test
-          void whenAssertingException_thenThrown() {
-              Throwable exception = assertThrows(
-                IllegalArgumentException.class, 
-                () -> {
-                    throw new IllegalArgumentException("Exception message");
-                }
-              );
-              assertEquals("Exception message", exception.getMessage());
-          }
-          ```
-          The assertion will fail if no exception is thrown, or if an exception of a 
+         @Test
+             public void testConvertToDoubleThrowException() {
+                 String age = "eighteen";
+         
+                 assertThrows(NumberFormatException.class, () -> { convertToInt(age); });
+             }
+         
+             private static Integer convertToInt(String str) {
+                 if (str == null) {
+                     return null;
+                 }
+                 return Integer.valueOf(str);
+             }
+         ```
+         
+   * The assertion will fail if no exception is thrown, or if an exception of a 
           different type is thrown.
           
    10. **assertTimeout** and **assertTimeoutPreemptively**
