@@ -15,6 +15,8 @@ public class Customer {
     private Integer budget;
     private List<Item> wantToBuy;
 
+    private String token;
+
     public int getId() { return id; }
 
     public void setId(int id) { this.id = id; }
@@ -53,5 +55,13 @@ public class Customer {
 
     public void setWantToBuy(List<Item> wantToBuy) {
         this.wantToBuy = wantToBuy;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }
