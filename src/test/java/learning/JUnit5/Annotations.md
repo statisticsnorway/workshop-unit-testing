@@ -38,6 +38,13 @@ Based on these basic annotations, lets see one running example: [LifecycleJUnit5
 @RepeatedTest annotation introduced in JUnit 5. It provides us a powerful way to write any test that we want to 
 repeat several times.
 
+Unit 5 now allows defining parameters for test constructors and methods and enables
+ dependency injection for them. This mechanism works by using an instance of a ParameterResolver
+  to dynamically resolve parameters at runtime.
+  
+  Currently, there are only 3 built-in resolvers for parameters of 
+  type **TestInfo**, **RepetitionInfo** and **TestReporter**.
+
 ``` java 
 @RepeatedTest(3)
 void repeatedTest(TestInfo testInfo) {

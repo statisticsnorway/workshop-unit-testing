@@ -19,7 +19,7 @@ public class RepeatedAnnotationTest {
     @RepeatedTest(value = 3)
     void repeatedTest(TestInfo testInfo) {
         System.out.println("Executing repeated test");
-        assertEquals(2, Math.addExact(1, 1), "1 + 1 should equal 2");
+        assertEquals(RepeatedAnnotationTest.class, testInfo.getTestClass().get());
     }
 
     @RepeatedTest(value = 3, name = RepeatedTest.LONG_DISPLAY_NAME)
