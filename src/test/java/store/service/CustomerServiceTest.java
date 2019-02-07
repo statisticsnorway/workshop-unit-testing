@@ -20,10 +20,7 @@ class CustomerServiceTest {
 
     private Customer testCustomer = null;
 
-   // @Mock
-    //private CustomerDao daoMock;
-
-    @Spy
+    @Mock
     private CustomerDao daoMock;
 
     @InjectMocks
